@@ -24,7 +24,7 @@ public class CurrencyConverterGUI extends javax.swing.JFrame {
         initComponents();
         final JFrame dialogFrame = new JFrame("About");
         dialogFrame.setSize(400,200);
-        
+        convAmt.disable();
         
         aboutMenu.addActionListener (new ActionListener() {
             @Override
@@ -35,7 +35,8 @@ public class CurrencyConverterGUI extends javax.swing.JFrame {
                     dialogFrame.getContentPane().add(textLabel, BorderLayout.CENTER);
                     dialogFrame.setVisible(true);
                 }
-            
+            CountryCodes.update();
+       
         });
         
         
@@ -282,12 +283,11 @@ public class CurrencyConverterGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_exchangeRateActionPerformed
 
     private void aboutMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutMenuMouseClicked
-        JOptionPane.showMessageDialog(null, "Developed By Mike Morton\n Arkansas State University, 2014");
-
+        JOptionPane.showMessageDialog(null, "Developed By:\nMike Morton,\nArkansas State University, 2014");
     }//GEN-LAST:event_aboutMenuMouseClicked
 
     private void exitMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMenuMouseClicked
-        // TODO add your handling code here:
+        //When exit button clicked, application is closed
         System.exit(0);
     }//GEN-LAST:event_exitMenuMouseClicked
 
@@ -328,6 +328,7 @@ public class CurrencyConverterGUI extends javax.swing.JFrame {
             public void run() {
                 new CurrencyConverterGUI().setVisible(true);
             }
+        
         });
     }
 
