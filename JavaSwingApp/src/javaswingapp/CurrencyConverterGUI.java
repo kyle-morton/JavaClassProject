@@ -20,24 +20,33 @@ import java.awt.event.*;
 public class CurrencyConverterGUI extends javax.swing.JFrame {
 
     JFrame dialogFrame;
-    public static java.util.List<Country> countries = new ArrayList();
+    CountryCodes codes = new CountryCodes();
+    /**
+     *
+     */
+    //public static java.util.List<Country> countries = new ArrayList<Country>();
     /**
      * Creates new form CurrencyConverterGUI
      */
     public CurrencyConverterGUI() {
         super("Currency Converter");
         initComponents();
-        final JFrame dialogFrame = new JFrame("About");
-        dialogFrame.setSize(400,200);
+//        final JFrame dialogFrame = new JFrame("About");
+//        dialogFrame.setSize(400,200);
 
         
-        CountryCodes.update(); //get country list
-        for (Country c : countries)
+        codes.update(); //get country list
+        System.out.println("Adding Countries:\n");
+
+        java.util.List<String> countryNames = new ArrayList(codes.ccCodes.keySet());
+        Collections.sort(countryNames); //sort names
+        for (String s : countryNames)
         {
-            currencyDrop1.addItem(c.getName());
-            currencyDrop2.addItem(c.getName());
+           // Map.Entry pairs = (Map.Entry)i.next();
+            currencyDrop1.addItem(s); //key of pair is country name
+            currencyDrop2.addItem(s); 
         }
-        //has 90 elements, all the same, why?
+
              
     }
 
@@ -119,6 +128,7 @@ public class CurrencyConverterGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Currency Converter");
+        setPreferredSize(new java.awt.Dimension(550, 300));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("Currency Amount:");
